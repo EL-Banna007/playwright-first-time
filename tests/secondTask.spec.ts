@@ -26,23 +26,23 @@ await page.waitForTimeout(5000);
 
 
 test('checkbox test', async ({ page }) => {
-const url : string = 'https://playwrightlab.github.io/';
-const checkboxJavascript : Locator = page.getByRole('checkbox', { name: /javascript/i });
-const checkboxPython : Locator = page.getByRole('checkbox', { name: /python/i });
-// Go to https://playwrightlab.github.io/
+const url : string = 'https://play-qa.com/basic-elements';
+const option1 : Locator = page.getByRole('checkbox', { name: /option 1/i });
+const option2 : Locator = page.getByRole('checkbox', { name: /option 2/i });
+// Go to https://play-qa.com/basic-elements
 await page.goto(url);
- // chose the checkbox with the name of javascript
-await checkboxJavascript.check();
+ // chose the checkbox with the name of option 1
+await option1.check();
 // ASSERT that the checkbox is checked
-await expect(checkboxJavascript).toBeChecked();
-// chose the checkbox with the name of python
-await checkboxPython.check();
+await expect(option1).toBeChecked();
+// chose the checkbox with the name of option 2
+await option2.check();
 // ASSERT that the checkbox is checked
-await expect(checkboxPython).toBeChecked();
-//uncheck the checkbox with the name of javascript
-await checkboxJavascript.uncheck();
+await expect(option2).toBeChecked();
+//uncheck the checkbox with the name of option 1
+await option1.uncheck();
 // ASSERT that the checkbox is unchecked
-await expect(checkboxJavascript).not.toBeChecked();
+await expect(option1).not.toBeChecked();
 
 
 
@@ -72,3 +72,22 @@ await page.waitForTimeout(5000);
 
 
 
+
+test('alert test', async ({ page }) => {
+
+  const url = 'https://the-internet.herokuapp.com/javascript_alerts';
+  const jsAlertButton = page.getByRole('button', { name: 'Click for JS Alert' });
+  const jsConfirmButton = page.getByRole('button', { name: 'Click for JS Confirm' });
+  // Go to https://the-internet.herokuapp.com/javascript_alerts
+  await page.goto(url);
+  // Click on the button that triggers the JS alert
+  await jsAlertButton.click();
+  // ASSERT that the alert is displayed with the correct message
+ await page.on('dialog', async (dialog) => {
+    await expect(dialog.message()).toBe('I am a JS Alert');
+    await dialog.accept();
+  });
+
+
+
+});
