@@ -1,10 +1,11 @@
-import { test, expect, Locator } from '@playwright/test';
+import {  expect, Locator } from '@playwright/test';
 import LoginPage from '../pages/LoginPage';
 import PlayQaPage from '../pages/PlayQaPage';
 import PracticePage from '../pages/PracticePage';
 import HerokuappPage from '../pages/HerokuappPage';
-test('login - valid scenario', async ({ page }) => {
-  const loginPage = new LoginPage(page);
+import { test } from '../fixtures/Fixtures.ts';
+test('login - valid scenario', async ({ page , loginPage }) => {
+
   const emailAddress: string = 'ahmedelbanna0007@gmail.com';
   const password: string = 'P@ssw0rd';
   // Go to https://www.automationexercise.com/login
@@ -24,8 +25,8 @@ test('login - valid scenario', async ({ page }) => {
 
 
 
-test('checkbox test', async ({ page }) => {
-const playQaPage = new PlayQaPage(page);
+test('checkbox test', async ({ page,playQaPage }) => {
+
   // Go to https://play-qa.com/basic-elements
  await playQaPage.goToPlayQaPage();
   // chose the checkbox with the name of option 1
@@ -39,9 +40,8 @@ const playQaPage = new PlayQaPage(page);
 
 });
 
-test('drag and drop test', async ({ page }) => {
- 
-  const practicePage = new PracticePage(page);
+test('drag and drop test', async ({ page , practicePage }) => {
+
   // Go to https://practice.expandtesting.com/drag-and-drop-circles?utm_source=chatgpt.com
   await practicePage.goToPracticePage();
   // Drag the red circle to the drop place
@@ -58,8 +58,7 @@ await practicePage.dragAndDropRedCircle();
 
 
 
-test('alert test', async ({ page }) => {
- const herokuappPage = new HerokuappPage(page);
+test('alert test', async ({ page , herokuappPage}) => {
  
   // Go to https://the-internet.herokuapp.com/javascript_alerts
   await herokuappPage.goToHerokuappPage();
