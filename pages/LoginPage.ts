@@ -27,6 +27,7 @@ export default class LoginPage extends BasePage {
 
 async goToLoginPage() {
   await this.actions.goToURL(this.page, this.loginPageUrl); 
+  await this.waits.waitForPageToFullyLoad();
   await this.assertions.assertElementIsVisible(this.emailAddressTextbox, this.emailAddressTextbox.description());
   }
 

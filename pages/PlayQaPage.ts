@@ -1,6 +1,5 @@
 import { expect, Locator, Page } from "@playwright/test";
-import Actions from "../utilies/Actions";
-import Assertions from "../utilies/Assertions";
+
 import BasePage from "./BasePage";
 
 export default class PlayQaPage extends BasePage {
